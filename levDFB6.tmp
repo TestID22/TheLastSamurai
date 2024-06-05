@@ -803,4 +803,4 @@ scale = Vector2(1.205, 1.205)
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="Zombie" parent="Mobs" instance=ExtResource("4_ux5d6")]
-position = Vector2(1881, 589)
+position = Vector2(1174, 589)

@@ -269,7 +269,7 @@ position = Vector2(34.5966, -31.7363)
 scale = Vector2(1.46071, 1.41961)
 sprite_frames = SubResource("SpriteFrames_huayl")
 animation = &"atack1"
-frame_progress = 0.242452
+frame_progress = 0.421966
 speed_scale = 2.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]

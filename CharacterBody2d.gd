@@ -22,15 +22,20 @@ func _physics_process(delta):
 		_animated_sprite.play("jump")
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("left", "right")
+	print(direction)
 	if direction:
 		velocity.x = direction * SPEED
 		if velocity.y == 0:
 			_animated_sprite.play("run")
+			
+	elif direction == 0 and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		velocity.x == 0
+		_animated_sprite.play("atack1")
 	else:
 		if velocity.y == 0:
-			_animated_sprite.play("idle")
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+			_animated_sprite.play("idle")
 		
 	if direction == -1: 
 		_animated_sprite.flip_h = true
@@ -38,3 +43,4 @@ func _physics_process(delta):
 		_animated_sprite.flip_h = false
 		
 	move_and_slide()
+
