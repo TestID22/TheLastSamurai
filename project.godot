@@ -10,10 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Test 1"
-run/main_scene="res://menu.tscn"
+config/name="TheLastSamuraiOnTheAuthor"
+run/main_scene="res://MainMenu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [rendering]
 
