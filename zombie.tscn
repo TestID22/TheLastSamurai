@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://cc7cxu2l5ob1r"]
+[gd_scene load_steps=23 format=3 uid="uid://cc7cxu2l5ob1r"]
 
 [ext_resource type="Script" path="res://zombie.gd" id="1_b6c7j"]
 [ext_resource type="Texture2D" uid="uid://btqwn418vvhmh" path="res://assets/Zombie Man/Idle.png" id="1_sh83a"]
+[ext_resource type="FontFile" uid="uid://c57igi6xxwjn7" path="res://fonts/PressStart2P-Regular.ttf" id="2_ajoew"]
 [ext_resource type="Texture2D" uid="uid://bwseaspvkm8ri" path="res://assets/Zombie Man/Run.png" id="2_rvj7h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lh7hg"]
@@ -127,11 +128,25 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tdjvo"]
-radius = 240.78
+radius = 155.242
 
 [node name="Zombie" type="CharacterBody2D"]
 scale = Vector2(1.205, 1.205)
 script = ExtResource("1_b6c7j")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 25.7261
+offset_top = 14.1079
+offset_right = 217.726
+offset_bottom = 37.1079
+theme_override_fonts/font = ExtResource("2_ajoew")
+theme_override_font_sizes/font_size = 8
+text = "Маширо?!!Куробина?.
+кхе кхе эТо ТЫЫ???КУРОБИНА???
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(110, 99)
@@ -142,7 +157,7 @@ position = Vector2(112.863, 76.3485)
 scale = Vector2(1.543, 1.862)
 sprite_frames = SubResource("SpriteFrames_i83qk")
 animation = &"chase"
-frame_progress = 0.822792
+frame_progress = 0.976063
 
 [node name="Detector" type="Area2D" parent="."]
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://byahxfhn0gm7c"]
+[gd_scene load_steps=9 format=3 uid="uid://byahxfhn0gm7c"]
 
+[ext_resource type="FontFile" uid="uid://c57igi6xxwjn7" path="res://fonts/PressStart2P-Regular.ttf" id="2_hm2nu"]
 [ext_resource type="PackedScene" uid="uid://c463tw03l3wpg" path="res://bg.tscn" id="3_v1o1k"]
 [ext_resource type="PackedScene" uid="uid://dvfwujtffo76x" path="res://Hero.tscn" id="4_ueoe5"]
 [ext_resource type="PackedScene" uid="uid://cc7cxu2l5ob1r" path="res://zombie.tscn" id="4_ux5d6"]
@@ -798,9 +799,18 @@ metadata/_edit_group_ = true
 
 [node name="Hero" parent="Player" instance=ExtResource("4_ueoe5")]
 position = Vector2(441, 711)
-scale = Vector2(1.205, 1.205)
 
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="Zombie" parent="Mobs" instance=ExtResource("4_ux5d6")]
 position = Vector2(1881, 589)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 79.0
+offset_top = 61.0
+offset_right = 207.0
+offset_bottom = 84.0
+theme_override_fonts/font = ExtResource("2_hm2nu")
+text = "HP: 100"
