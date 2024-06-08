@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bmmasu6t1qlbt"
+path="res://.godot/imported/Pixel 12.mp3-e92a9e2f1127f2c6b240600cf90ce48e.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Pixel 12.mp3"
+dest_files=["res://.godot/imported/Pixel 12.mp3-e92a9e2f1127f2c6b240600cf90ce48e.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

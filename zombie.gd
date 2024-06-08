@@ -32,7 +32,7 @@ func _on_detector_body_exited(body):
 	if body.name == 'Hero':
 		zombi_animation.play("idle")
 		chase = false 
-		$Label.text = 'я так хотел попробовать твою плоть...'
+		
 
 		
 

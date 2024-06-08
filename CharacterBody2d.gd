@@ -4,7 +4,7 @@ enum {
 	IDLE,
 	MOVE,
 	JUMP,
-	ATTACK,
+	ATTACK1,
 	ATTACK2,
 	ATTACK3,
 	SLIDE
@@ -25,8 +25,10 @@ func _physics_process(delta):
 	match state:
 		MOVE:
 			move_state()
-		ATTACK:
+		ATTACK1:
 			attack_state()
+		ATTACK2:
+			pass
 		JUMP:
 			pass
 	
@@ -50,11 +52,14 @@ func move_state():
 	if direction == 1: 
 		_animated_sprite.flip_h = false
 		
-	if Input.is_action_just_released('attack'):
-		state = ATTACK
+	if Input.is_action_just_pressed('attack'):
+		state = ATTACK1
+	
 	
 func attack_state():
 	velocity.x = 0 
 	_animated_sprite.play('attack1')
-	await _animated_sprite.animation_finished		
+	await _animated_sprite.animation_finished
 	state = MOVE
+	
+

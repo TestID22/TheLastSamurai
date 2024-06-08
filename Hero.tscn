@@ -1,18 +1,12 @@
-[gd_scene load_steps=40 format=3 uid="uid://dvfwujtffo76x"]
+[gd_scene load_steps=47 format=3 uid="uid://dvfwujtffo76x"]
 
 [ext_resource type="Script" path="res://CharacterBody2d.gd" id="1_ojc4r"]
 [ext_resource type="Texture2D" uid="uid://rbuqwabmc7wj" path="res://assets/Idle.png" id="2_def03"]
 [ext_resource type="Texture2D" uid="uid://dqm2pd7pixuiw" path="res://assets/Samurai/Attack_1.png" id="2_rfpij"]
 [ext_resource type="Texture2D" uid="uid://bvisk7bh73hir" path="res://assets/Run.png" id="3_bgcl8"]
+[ext_resource type="Texture2D" uid="uid://ba2outn6qdy44" path="res://assets/Samurai/Attack_2.png" id="3_io7ti"]
 [ext_resource type="Texture2D" uid="uid://cr8trntlkgni0" path="res://assets/Jump.png" id="3_xs6p2"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o8c6g"]
-atlas = ExtResource("2_rfpij")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w11vl"]
-atlas = ExtResource("2_rfpij")
-region = Rect2(128, 0, 128, 128)
+[ext_resource type="Texture2D" uid="uid://cghn6nx8vtmyq" path="res://assets/Samurai/Attack_3.png" id="4_pf3ft"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6asvw"]
 atlas = ExtResource("2_rfpij")
@@ -29,6 +23,34 @@ region = Rect2(512, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ufo8"]
 atlas = ExtResource("2_rfpij")
 region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc4j6"]
+atlas = ExtResource("3_io7ti")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1cge"]
+atlas = ExtResource("3_io7ti")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrapn"]
+atlas = ExtResource("3_io7ti")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq2tf"]
+atlas = ExtResource("3_io7ti")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57w8m"]
+atlas = ExtResource("4_pf3ft")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4jpa"]
+atlas = ExtResource("4_pf3ft")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlog4"]
+atlas = ExtResource("4_pf3ft")
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pua6a"]
 atlas = ExtResource("2_def03")
@@ -138,12 +160,6 @@ region = Rect2(896, 0, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o8c6g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w11vl")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_6asvw")
 }, {
 "duration": 1.0,
@@ -157,6 +173,37 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack1",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc4j6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1cge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrapn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq2tf")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57w8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4jpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlog4")
+}],
+"loop": false,
+"name": &"attack3",
 "speed": 5.0
 }, {
 "frames": [{
@@ -254,7 +301,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysr7y"]
-radius = 24.0
+radius = 20.7499
 height = 120.0
 
 [node name="Hero" type="CharacterBody2D"]
@@ -269,10 +316,12 @@ position = Vector2(34.5966, -31.7363)
 scale = Vector2(1.46071, 1.41961)
 sprite_frames = SubResource("SpriteFrames_huayl")
 animation = &"attack1"
-speed_scale = 2.0
+frame = 3
+frame_progress = 1.0
+speed_scale = 1.46
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(34.9497, 6.41971)
+position = Vector2(29.9632, 5.95504)
 shape = SubResource("CapsuleShape2D_ysr7y")
 one_way_collision_margin = 0.0
 
@@ -284,3 +333,5 @@ limit_left = -400
 limit_top = 237
 limit_right = 1640
 limit_smoothed = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
