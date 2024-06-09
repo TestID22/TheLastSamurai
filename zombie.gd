@@ -15,6 +15,7 @@ enum {
 var state = 0
 var player
 var diraction
+var damage = 20
 
 func _ready():
 	Signals.connect('player_position_update', Callable(self, "_on_player_position_update"))
@@ -34,8 +35,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		zombi_animation.flip_h = true
 	
-	if state == CHASE:
-		chase_state()
+
 	move_and_slide()
 
 	
@@ -58,11 +58,11 @@ func chase_state():
 		zombi_animation.flip_h = false
 
 func _on_detector_body_entered(body):
-	state = CHASE
-
-func _on_attack_range_body_entered(body):
-	state = ATTACK
+	print("CHASE MODE IS ACTIVATED")
 
 
 func _on_hitbox_area_entered(area):
-	print("ZOMBIE ATTACKS!")
+	state = ATTACK
+	Signals.emit_signal("enemy_attack", damage)
+	print("ZOMBIE DEALS ", damage, " damage")
+

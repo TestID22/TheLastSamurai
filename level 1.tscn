@@ -816,6 +816,10 @@ offset_bottom = 84.0
 theme_override_fonts/font = ExtResource("5_8qbf3")
 text = "HP: 100"
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_fctn2")
 volume_db = -2.586

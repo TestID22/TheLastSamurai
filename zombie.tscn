@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cc7cxu2l5ob1r"]
+[gd_scene load_steps=46 format=3 uid="uid://cc7cxu2l5ob1r"]
 
 [ext_resource type="Script" path="res://zombie.gd" id="1_b6c7j"]
 [ext_resource type="Texture2D" uid="uid://btqwn418vvhmh" path="res://assets/Zombie Man/Idle.png" id="1_sh83a"]
@@ -366,8 +366,12 @@ tracks/1/keys = {
 "values": ["idle"]
 }
 
+[sub_resource type="Animation" id="Animation_xiiwx"]
+length = 0.001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4twti"]
 _data = {
+"RESET": SubResource("Animation_xiiwx"),
 "attack": SubResource("Animation_6322a"),
 "chase": SubResource("Animation_aqknx"),
 "damaged": SubResource("Animation_kj8qp"),
@@ -386,7 +390,6 @@ collision_layer = 0
 script = ExtResource("1_b6c7j")
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_left = 25.7261
 offset_top = 14.1079
 offset_right = 217.726
@@ -397,7 +400,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(110, 99)
 shape = SubResource("CapsuleShape2D_lh7hg")
 
@@ -405,7 +407,8 @@ shape = SubResource("CapsuleShape2D_lh7hg")
 position = Vector2(112.863, 76.3485)
 scale = Vector2(1.543, 1.862)
 sprite_frames = SubResource("SpriteFrames_i83qk")
-animation = &"idle"
+animation = &"attack"
+frame = 3
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -416,22 +419,24 @@ autoplay = "idle"
 movie_quit_on_finish = true
 
 [node name="Detector" type="Area2D" parent="."]
-visible = false
+position = Vector2(-16.5975, -13.278)
+disable_mode = 1
 collision_layer = 0
-collision_mask = 2
+collision_mask = 16
 monitoring = false
 monitorable = false
 gravity_space_override = 1
 
 [node name="AttackDirection" type="Node2D" parent="."]
+position = Vector2(-16.5975, 0)
 
 [node name="AttackRange" type="Area2D" parent="AttackDirection"]
+position = Vector2(25.7261, 0)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackRange"]
-visible = false
-position = Vector2(58.0913, 90.4564)
+position = Vector2(60.5809, 98.7552)
 shape = SubResource("CapsuleShape2D_bbngr")
 
 [node name="Damagebox" parent="AttackDirection" instance=ExtResource("8_j6rmu")]
@@ -447,7 +452,7 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="AttackDirection/Damagebox/Hitbox" index="0"]
-position = Vector2(-37.1599, -18.6515)
+position = Vector2(-37.1599, -20.7469)
 
 [connection signal="area_entered" from="Detector" to="." method="_on_detector_area_entered"]
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
@@ -455,5 +460,6 @@ position = Vector2(-37.1599, -18.6515)
 [connection signal="area_entered" from="AttackDirection/AttackRange" to="." method="_on_attack_range_area_entered"]
 [connection signal="body_entered" from="AttackDirection/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="area_entered" from="AttackDirection/Damagebox/Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="AttackDirection/Damagebox/Hitbox" to="." method="_on_hitbox_body_entered"]
 
 [editable path="AttackDirection/Damagebox"]

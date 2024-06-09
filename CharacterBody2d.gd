@@ -10,13 +10,19 @@ enum {
 	ATTACK1,
 	ATTACK2,
 	ATTACK3,
-	SLIDE
+	SLIDE,
+	DAMAGE,
+	DEATH
 }
 #variables
 var state = MOVE
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var player_pos 
+var health = 100
+
+func _ready():
+	Signals.connect("enemy_attack", Callable(self, "_on_damage_recieved"))
 
 func _physics_process(delta):
 	match state:
@@ -28,6 +34,10 @@ func _physics_process(delta):
 			pass
 		JUMP:
 			pass
+		DAMAGE:
+			damage_state()
+		DEATH:
+			death_state()
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -63,4 +73,25 @@ func attack_state():
 	await _animated_sprite.animation_finished
 	state = MOVE
 	
-
+func damage_state():
+	velocity.x = 0 
+	_animated_sprite.play("damage")
+	await _animated_sprite.animation_finished
+	state = MOVE
+			
+func _on_damage_recieved(enemy_damage):
+	health -= enemy_damage
+	if health < 0:
+		health = 0;
+		state = DEATH
+	else:
+		state = DAMAGE
+	print(health)
+	
+		
+func death_state():
+	velocity.x = 0
+	_animated_sprite.play("death")
+	_animated_sprite.animation_finished
+	await get_tree().create_timer(1).timeout
+	get_tree().change_scene_to_file("res://MainMenu.tscn")
