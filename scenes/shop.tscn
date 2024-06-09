@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cy2d7y4o3rllr"]
 
+[ext_resource type="Script" path="res://scenes/shop.gd" id="1_onjj4"]
 [ext_resource type="Texture2D" uid="uid://d3gyta7wbq7rh" path="res://assets/environment/shop_anim.png" id="1_uqf35"]
-[ext_resource type="Script" path="res://scenes/AnimatedSprite2D.gd" id="2_57iu1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l3ack"]
 atlas = ExtResource("1_uqf35")
@@ -54,11 +54,13 @@ animations = [{
 }]
 
 [node name="Shop" type="Node2D"]
+position = Vector2(54, -88)
+scale = Vector2(1.309, 1.309)
+script = ExtResource("1_onjj4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(76.5, -82.983)
+position = Vector2(632.544, 525.592)
 scale = Vector2(2.29661, 2.29661)
 sprite_frames = SubResource("SpriteFrames_xk2pn")
 animation = &"smoke"
-frame_progress = 0.490005
-script = ExtResource("2_57iu1")
+frame_progress = 0.444065

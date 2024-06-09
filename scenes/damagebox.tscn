@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://x6etlxland1n"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ie47"]
+radius = 14.1482
+height = 94.812
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cm3p7"]
+size = Vector2(46.8421, 40.7054)
+
+[node name="Damagebox" type="Node2D"]
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_6ie47")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(38, 0)
+shape = SubResource("RectangleShape2D_cm3p7")

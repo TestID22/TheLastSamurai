@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://byahxfhn0gm7c"]
+[gd_scene load_steps=12 format=3 uid="uid://byahxfhn0gm7c"]
 
 [ext_resource type="PackedScene" uid="uid://c463tw03l3wpg" path="res://bg.tscn" id="1_n20wk"]
 [ext_resource type="Texture2D" uid="uid://cy7vfp1j2c20c" path="res://background/Background layers/Layer_0001_8.png" id="2_joitn"]
 [ext_resource type="PackedScene" uid="uid://dvfwujtffo76x" path="res://Hero.tscn" id="3_yxq16"]
 [ext_resource type="PackedScene" uid="uid://cc7cxu2l5ob1r" path="res://zombie.tscn" id="4_lpku7"]
 [ext_resource type="FontFile" uid="uid://c57igi6xxwjn7" path="res://fonts/PressStart2P-Regular.ttf" id="5_8qbf3"]
+[ext_resource type="PackedScene" uid="uid://5t81ua5qa4g6" path="res://Enemies/EvilWizard.tscn" id="5_dedv8"]
 [ext_resource type="AudioStream" uid="uid://bmmasu6t1qlbt" path="res://assets/music/Pixel 12.mp3" id="6_fctn2"]
+[ext_resource type="PackedScene" uid="uid://cy2d7y4o3rllr" path="res://scenes/shop.tscn" id="7_0epi2"]
 
 [sub_resource type="GDScript" id="GDScript_juhe6"]
 script/source = "extends Node2D
@@ -14,8 +16,6 @@ func _ready():
 	# Скрыть курсор мыши при запуске игры
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
-func _on_quit_pressed():
-	get_tree().quit()
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bbhb0"]
@@ -798,19 +798,17 @@ layer_0/tile_data = PackedInt32Array(3080216, 196608, 45, 3145752, 196608, 46, 3
 layer_1/tile_data = PackedInt32Array()
 metadata/_edit_group_ = true
 
-[node name="Player" type="Node2D" parent="."]
-
-[node name="Hero" parent="Player" instance=ExtResource("3_yxq16")]
-position = Vector2(441, 711)
-
 [node name="Mobs" type="Node2D" parent="."]
 
 [node name="Zombie" parent="Mobs" instance=ExtResource("4_lpku7")]
-position = Vector2(1881, 589)
+position = Vector2(1677, 589)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="EvilWizard" parent="Mobs" instance=ExtResource("5_dedv8")]
+position = Vector2(2106, 682)
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HP Bar TODO" type="Label" parent="UI"]
 offset_left = 79.0
 offset_top = 61.0
 offset_right = 207.0
@@ -822,3 +820,12 @@ text = "HP: 100"
 stream = ExtResource("6_fctn2")
 volume_db = -2.586
 autoplay = true
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Hero" parent="Player" instance=ExtResource("3_yxq16")]
+position = Vector2(441, 711)
+
+[node name="Shop" parent="." instance=ExtResource("7_0epi2")]
+z_index = -1
+position = Vector2(273, -79)

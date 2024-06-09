@@ -67,8 +67,8 @@ texture = ExtResource("2_dachx")
 [node name="Start Game" type="Button" parent="."]
 offset_left = 414.275
 offset_top = 513.175
-offset_right = 680.275
-offset_bottom = 544.175
+offset_right = 691.275
+offset_bottom = 570.175
 text = "Join the Dark Brotherhood"
 text_overrun_behavior = 1
 
@@ -80,6 +80,14 @@ libraries = {
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_sc2ps")
 autoplay = true
+
+[node name="Exit button" type="Button" parent="."]
+offset_left = 488.0
+offset_top = 560.0
+offset_right = 703.0
+offset_bottom = 593.0
+text = "Exit
+"
 
 [connection signal="focus_entered" from="Start Game" to="." method="_on_start_game_focus_entered"]
 [connection signal="pressed" from="Start Game" to="." method="_on_button_pressed"]
