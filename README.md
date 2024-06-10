@@ -1,4 +1,5 @@
 
 
-Uploading 2024-06-05_18h22_02.mp4…
+
+https://github.com/TestID22/TheLastSamurai/assets/45716437/ed5e9612-e614-4429-a719-443205418d3f
 
