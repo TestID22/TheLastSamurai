@@ -1,21 +1,30 @@
-[gd_scene load_steps=12 format=3 uid="uid://byahxfhn0gm7c"]
+[gd_scene load_steps=17 format=3 uid="uid://byahxfhn0gm7c"]
 
 [ext_resource type="PackedScene" uid="uid://c463tw03l3wpg" path="res://bg.tscn" id="1_n20wk"]
 [ext_resource type="Texture2D" uid="uid://cy7vfp1j2c20c" path="res://background/Background layers/Layer_0001_8.png" id="2_joitn"]
 [ext_resource type="PackedScene" uid="uid://dvfwujtffo76x" path="res://Hero.tscn" id="3_yxq16"]
 [ext_resource type="PackedScene" uid="uid://cc7cxu2l5ob1r" path="res://zombie.tscn" id="4_lpku7"]
-[ext_resource type="FontFile" uid="uid://c57igi6xxwjn7" path="res://fonts/PressStart2P-Regular.ttf" id="5_8qbf3"]
 [ext_resource type="PackedScene" uid="uid://5t81ua5qa4g6" path="res://Enemies/EvilWizard.tscn" id="5_dedv8"]
 [ext_resource type="AudioStream" uid="uid://bmmasu6t1qlbt" path="res://assets/music/Pixel 12.mp3" id="6_fctn2"]
+[ext_resource type="Texture2D" uid="uid://rj71us21t5b7" path="res://assets/UI/over.png" id="6_ofnom"]
 [ext_resource type="PackedScene" uid="uid://cy2d7y4o3rllr" path="res://scenes/shop.tscn" id="7_0epi2"]
+[ext_resource type="Texture2D" uid="uid://diar0yyu73ol3" path="res://assets/UI/progress.png" id="7_c0olk"]
+[ext_resource type="Texture2D" uid="uid://dyje7yfmwcrcm" path="res://assets/UI/Doctors Pixel Art Character Sprite Sheets Pack.png" id="10_dxwoo"]
 
 [sub_resource type="GDScript" id="GDScript_juhe6"]
 script/source = "extends Node2D
 
+@onready var health_bar = $UI/HealthBar
+@onready var hero = $Player/Hero
+
 func _ready():
 	# Скрыть курсор мыши при запуске игры
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	health_bar.max_value = hero.max_health
+	health_bar.value = health_bar.max_value
 
+func _on_hero_health_changed(new_health):
+	health_bar.value = new_health
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bbhb0"]
@@ -783,6 +792,30 @@ tile_layout = 4
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_bbhb0")
 
+[sub_resource type="Curve" id="Curve_f1syt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.166207), 0.0, 0.0, 0, 0, Vector2(0.501706, 0.991034), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_8j0ja"]
+curve = SubResource("Curve_f1syt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i3feo"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(160, 70, 1)
+angle_min = 0.1
+angle_max = 225.0
+spread = 10.125
+initial_velocity_min = 0.1
+initial_velocity_max = 0.3
+radial_velocity_min = -62.5
+radial_velocity_max = 87.5
+gravity = Vector3(0, 98, 0)
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_8j0ja")
+color = Color(0.871707, 0.973778, 0.998955, 1)
+
 [node name="Level 1" type="Node2D"]
 position = Vector2(-273, -192)
 script = SubResource("GDScript_juhe6")
@@ -808,17 +841,15 @@ position = Vector2(2106, 682)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="HP Bar TODO" type="Label" parent="UI"]
+[node name="HealthBar" type="TextureProgressBar" parent="UI"]
 offset_left = 79.0
 offset_top = 61.0
-offset_right = 207.0
-offset_bottom = 84.0
-theme_override_fonts/font = ExtResource("5_8qbf3")
-text = "HP: 100"
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 150.0
+offset_bottom = 96.0
+scale = Vector2(3.24, 3.24)
+value = 100.0
+texture_over = ExtResource("6_ofnom")
+texture_progress = ExtResource("7_c0olk")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_fctn2")
@@ -833,3 +864,12 @@ position = Vector2(441, 711)
 [node name="Shop" parent="." instance=ExtResource("7_0epi2")]
 z_index = -1
 position = Vector2(273, -79)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(1657, 417)
+scale = Vector2(11.3301, 6.84)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_i3feo")
+texture = ExtResource("10_dxwoo")
+
+[connection signal="health_changed" from="Player/Hero" to="." method="_on_hero_health_changed"]

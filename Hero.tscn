@@ -598,7 +598,7 @@ scale = Vector2(1.46071, 1.41961)
 sprite_frames = SubResource("SpriteFrames_huayl")
 animation = &"death"
 frame = 2
-speed_scale = 1.565
+speed_scale = 2.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 visible = false

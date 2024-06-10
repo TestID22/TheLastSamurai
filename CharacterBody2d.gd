@@ -3,6 +3,8 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var _animated_sprite = $AnimatedSprite2D
 
+signal health_changed (new_health)
+
 enum {
 	IDLE,
 	MOVE,
@@ -19,11 +21,13 @@ var state = MOVE
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var player_pos 
-var health = 100
+var max_health = 100
+var current_health 
 
 func _ready():
 	Signals.connect("enemy_attack", Callable(self, "_on_damage_recieved"))
-
+	current_health = max_health
+	
 func _physics_process(delta):
 	match state:
 		MOVE:
@@ -80,13 +84,14 @@ func damage_state():
 	state = MOVE
 			
 func _on_damage_recieved(enemy_damage):
-	health -= enemy_damage
-	if health < 0:
-		health = 0;
+	current_health -= enemy_damage
+	if current_health < 0:
+		current_health = 0;
 		state = DEATH
 	else:
 		state = DAMAGE
-	print(health)
+	emit_signal('health_changed', current_health)	
+	print(current_health)
 	
 		
 func death_state():
