@@ -21,7 +21,7 @@ var state = MOVE
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var player_pos 
-var max_health = 100
+var max_health = 1000
 var current_health 
 
 func _ready():
@@ -91,7 +91,7 @@ func _on_damage_recieved(enemy_damage):
 	else:
 		state = DAMAGE
 	emit_signal('health_changed', current_health)	
-	print(current_health)
+	print("Current Health: ",current_health)
 	
 		
 func death_state():

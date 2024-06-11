@@ -14,10 +14,10 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
-
 func _on_attack_range_body_entered(body):
+	print('Dark Wizzard deals: 20 damage')
 	_wizard_animation.play("attack")
-
+	_wizard_animation.animation_finished
 
 func _on_attack_range_body_exited(body):
 	_wizard_animation.play("idle")

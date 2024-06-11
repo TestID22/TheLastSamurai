@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://byahxfhn0gm7c"]
+[gd_scene load_steps=16 format=3 uid="uid://byahxfhn0gm7c"]
 
 [ext_resource type="PackedScene" uid="uid://c463tw03l3wpg" path="res://bg.tscn" id="1_n20wk"]
 [ext_resource type="Texture2D" uid="uid://cy7vfp1j2c20c" path="res://background/Background layers/Layer_0001_8.png" id="2_joitn"]
 [ext_resource type="PackedScene" uid="uid://dvfwujtffo76x" path="res://Hero.tscn" id="3_yxq16"]
 [ext_resource type="PackedScene" uid="uid://cc7cxu2l5ob1r" path="res://zombie.tscn" id="4_lpku7"]
-[ext_resource type="PackedScene" uid="uid://5t81ua5qa4g6" path="res://Enemies/EvilWizard.tscn" id="5_dedv8"]
 [ext_resource type="AudioStream" uid="uid://bmmasu6t1qlbt" path="res://assets/music/Pixel 12.mp3" id="6_fctn2"]
 [ext_resource type="Texture2D" uid="uid://rj71us21t5b7" path="res://assets/UI/over.png" id="6_ofnom"]
 [ext_resource type="PackedScene" uid="uid://cy2d7y4o3rllr" path="res://scenes/shop.tscn" id="7_0epi2"]
@@ -836,9 +835,6 @@ metadata/_edit_group_ = true
 [node name="Zombie" parent="Mobs" instance=ExtResource("4_lpku7")]
 position = Vector2(1677, 589)
 
-[node name="EvilWizard" parent="Mobs" instance=ExtResource("5_dedv8")]
-position = Vector2(2106, 682)
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" type="TextureProgressBar" parent="UI"]
@@ -852,6 +848,7 @@ texture_over = ExtResource("6_ofnom")
 texture_progress = ExtResource("7_c0olk")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource("6_fctn2")
 volume_db = -2.586
 autoplay = true

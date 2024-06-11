@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://5t81ua5qa4g6"]
+[gd_scene load_steps=26 format=3 uid="uid://5t81ua5qa4g6"]
 
 [ext_resource type="Script" path="res://Enemies/EvilWizard.gd" id="1_kul02"]
 [ext_resource type="Texture2D" uid="uid://boidr5xiulkmr" path="res://assets/enemies/EvilWizard/Idle.png" id="1_uwcp2"]
 [ext_resource type="Texture2D" uid="uid://bl5i3l5444qyx" path="res://assets/enemies/EvilWizard/Attack1.png" id="2_ixnyg"]
+[ext_resource type="PackedScene" uid="uid://x6etlxland1n" path="res://scenes/damagebox.tscn" id="4_u8esm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61unx"]
 atlas = ExtResource("2_ixnyg")
@@ -193,7 +194,7 @@ size = Vector2(82.8653, 76.2808)
 
 [node name="EvilWizard" type="CharacterBody2D"]
 scale = Vector2(2.635, 2.635)
-collision_layer = 2
+collision_layer = 0
 script = ExtResource("1_kul02")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -223,5 +224,12 @@ collision_mask = 2
 position = Vector2(-56.5465, 0)
 shape = SubResource("RectangleShape2D_e81ro")
 
+[node name="Damagebox" parent="." instance=ExtResource("4_u8esm")]
+
+[node name="HurtBox" parent="Damagebox" index="0"]
+collision_mask = 2
+
 [connection signal="body_entered" from="AttackDirection/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackDirection/AttackRange" to="." method="_on_attack_range_body_exited"]
+
+[editable path="Damagebox"]
